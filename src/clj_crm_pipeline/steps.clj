@@ -33,4 +33,4 @@
   (shell/bash ctx cwd
               "cp target/uberjar/clj-crm.jar    ~/backend/target/uberjar/clj-crm.jar"
               "cp env/prod/resources/config.edn ~/backend/config.edn"
-              "cd ~backend && nohup java -Dconf=~/backend/config.edn -Dcors-regex-str=\"http://10.20.30.40:5000\" -jar ~/backend/target/uberjar/clj-crm.jar & PID=$!; echo $PID > ~/backend/clj-crm.pid"))
+              "cd ~/backend && nohup java -Dconf=~/backend/config.edn -Dcors-regex-str=\"http://10.20.30.40:5000\" -jar ~/backend/target/uberjar/clj-crm.jar & PID=$!; echo $PID > ~/backend/clj-crm.pid"))
