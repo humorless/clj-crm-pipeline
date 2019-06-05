@@ -35,11 +35,13 @@
 
 (defn build-backend [{cwd :cwd} ctx]
   (shell/bash ctx cwd
+              "sed -i 's/10.20.30.40/10.113.214.181/g' env/prod/resources/config.edn"
               "lein deps"
               "lein uberjar"))
 
 (defn build-frontend [{cwd :cwd} ctx]
   (shell/bash ctx cwd
+              "sed -i 's/127.0.0.1/10.113.214.181/g' src/agent.js"
               "npm install"
               "npm run build"))
 
