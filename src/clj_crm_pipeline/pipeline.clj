@@ -5,12 +5,20 @@
    [clj-crm-pipeline.steps :as steps]))
 
 (def pipeline-def
-  `((control-flow/either
-     manualtrigger/wait-for-manual-trigger
-     steps/wait-for-commit-on-master)
-    (control-flow/with-workspace
-      steps/clone
-      steps/build
-      (control-flow/in-parallel
-       steps/kill
-       steps/deploy))))
+  `((control-flow/in-parallel
+     (control-flow/run
+      (control-flow/either
+       manualtrigger/wait-for-manual-trigger
+       steps/wait-for-backend-repo)
+      (control-flow/with-workspace
+        steps/clone-backend
+        steps/build-backend
+        steps/deploy))
+     (control-flow/run
+      (control-flow/either
+       manualtrigger/wait-for-manual-trigger
+       steps/wait-for-frontend-repo)
+      (control-flow/with-workspace
+        steps/clone-frontend
+        steps/build-frontend
+        steps/deploy)))))
