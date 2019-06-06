@@ -1,6 +1,6 @@
 # clj-crm-pipeline
 
-A continuous delivery pipeline for FIXME
+A continuous delivery pipeline for [clj-crm](https://github.com/humorless/clj-crm) and [react-redux-crm](https://github.com/humorless/react-redux-crm)
 
 ## Usage
 
@@ -19,6 +19,6 @@ A continuous delivery pipeline for FIXME
 * `/resources/`
     * `logback.xml` contains a sample log configuration
 
-## References
+## Note
 
-* for a more detailed example, look at the [example pipeline](https://github.com/flosell/lambdacd/tree/master/src/todopipeline) in the main LambdaCD project
+When I wrote `deploy.sh` at backend, frontend project, I encounter certain problems with detaching process. I solved it with tmux, so use this pipeline by `nohup` to avoid nested tmux session.
